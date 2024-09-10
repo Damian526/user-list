@@ -1,23 +1,12 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
-
-const counterSlice = createSlice({
-   name: 'counter',
-   initialState: 0,
-   reducers: {
-      increment: state => state + 1,
-      decrement: state => state - 1,
-   },
-});
-
-export const { increment, decrement } = counterSlice.actions;
+import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "../features/user/userSlice";
 
 const store = configureStore({
-   reducer: {
-      counter: counterSlice.reducer,
-   },
+  reducer: {
+    user: userReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
 export default store;

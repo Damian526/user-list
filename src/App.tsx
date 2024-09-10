@@ -1,30 +1,68 @@
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "./app/store";
-import { increment, decrement } from "./app/store";
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
+import {
+  fetchUsers,
+  selectFilteredUsers,
+  setFilter,
+} from "./features/user/userSlice";
 
-function App() {
-  const count = useSelector((state: RootState) => state.counter);
-  const dispatch = useDispatch();
+const App: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const users = useAppSelector(selectFilteredUsers);
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
+
+  const handleFilterChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    filterType: string
+  ) => {
+    dispatch(
+      setFilter({
+        filterType: filterType as keyof typeof filters,
+        value: e.target.value,
+      })
+    );
+  };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold mb-4">Counter: {count}</h1>
-        <button
-          onClick={() => dispatch(increment())}
-          className="px-4 py-2 bg-blue-500 text-white rounded mr-2"
-        >
-          Increment
-        </button>
-        <button
-          onClick={() => dispatch(decrement())}
-          className="px-4 py-2 bg-red-500 text-white rounded"
-        >
-          Decrement
-        </button>
-      </div>
+    <div className="App">
+      <h1>User List</h1>
+      <input
+        type="text"
+        placeholder="Filter by name"
+        onChange={(e) => handleFilterChange(e, "name")}
+      />
+      <input
+        type="text"
+        placeholder="Filter by username"
+        onChange={(e) => handleFilterChange(e, "username")}
+      />
+      <input
+        type="text"
+        placeholder="Filter by email"
+        onChange={(e) => handleFilterChange(e, "email")}
+      />
+      <input
+        type="text"
+        placeholder="Filter by phone"
+        onChange={(e) => handleFilterChange(e, "phone")}
+      />
+
+      {users.length > 0 ? (
+        <ul>
+          {users.map((user) => (
+            <li key={user.id}>
+              {user.name} - {user.email}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Loading users...</p>
+      )}
     </div>
   );
-}
+};
 
 export default App;
