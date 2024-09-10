@@ -27,12 +27,10 @@ const initialState: UserState = {
   },
 };
 
-// Create an asynchronous thunk for fetching user data
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
   const response = await axios.get<User[]>(
     "https://jsonplaceholder.typicode.com/users"
   );
-  console.log(response.data);
   return response.data;
 });
 
@@ -40,7 +38,6 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    // Reducer to handle setting filters
     setFilter: (
       state,
       action: PayloadAction<{
@@ -50,9 +47,15 @@ export const userSlice = createSlice({
     ) => {
       state.filters[action.payload.filterType] = action.payload.value;
       state.filteredUsers = state.users.filter((user) => {
-        return Object.entries(state.filters).every(([key, value]) =>
-          user[key as keyof User].toLowerCase().includes(value.toLowerCase())
-        );
+        return Object.entries(state.filters).every(([key, value]) => {
+          const userValue = user[key as keyof User];
+          if (typeof userValue === "string") {
+            return userValue.toLowerCase().includes(value.toLowerCase());
+          } else if (typeof userValue === "number") {
+            return userValue.toString().includes(value);
+          }
+          return false;
+        });
       });
     },
   },
@@ -72,12 +75,7 @@ export const userSlice = createSlice({
   },
 });
 
-// Export the setFilter action for use in components
 export const { setFilter } = userSlice.actions;
-
-// Selector to get the filtered users from the state
 export const selectFilteredUsers = (state: RootState) =>
   state.user.filteredUsers;
-
-// Export the user reducer to be included in the store
 export default userSlice.reducer;
