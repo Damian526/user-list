@@ -1,9 +1,9 @@
-import React from 'react';
-import { useAppDispatch } from '../app/hooks';
-import { setFilter } from '../features/user/userSlice';
+import React from "react";
+import { useAppDispatch } from "../app/hooks";
+import { setFilter } from "../features/user/userSlice";
 
 interface FilterInputProps {
-  filterType: 'name' | 'username' | 'email' | 'phone';
+  filterType: "name" | "username" | "email" | "phone";
 }
 
 const FilterInput: React.FC<FilterInputProps> = ({ filterType }) => {
@@ -16,11 +16,11 @@ const FilterInput: React.FC<FilterInputProps> = ({ filterType }) => {
   return (
     <input
       type="text"
-      placeholder={`Filter by ${filterType}`}
+      placeholder={filterType}
       onChange={handleChange}
-      className="py-2 px-4 border rounded w-full"
+      className="w-full p-2 border border-gray-300 rounded"
     />
   );
-}
+};
 
 export default FilterInput;
