@@ -13,6 +13,7 @@ export interface UserState {
     email: string;
     phone: string;
   };
+  error: string | null;
 }
 
 const initialState: UserState = {
@@ -25,6 +26,7 @@ const initialState: UserState = {
     email: "",
     phone: "",
   },
+  error: null,
 };
 
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
@@ -69,8 +71,9 @@ export const userSlice = createSlice({
         state.users = action.payload;
         state.filteredUsers = action.payload;
       })
-      .addCase(fetchUsers.rejected, (state) => {
+      .addCase(fetchUsers.rejected, (state,action) => {
         state.status = "failed";
+        state.error = action.error.message || "Failed to fetch users";
       });
   },
 });
