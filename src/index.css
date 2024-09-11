@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.filter-input {
+    transition: all 0.3s ease;
+ }
+ 
+ .filter-input:hover {
+    background-color: #f1f5f9;
+ }
+ 
+ .filter-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+ }
+ 
