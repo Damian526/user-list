@@ -1,30 +1,34 @@
-# React + TypeScript + Vite
+# User List App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a User Management application built with React and TypeScript. It allows users to filter and view a list of users fetched from an API. The project is set up using Vite for fast development and optimized builds.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **User Filtering**: Filter users by name, username, email, and phone.
+- **Responsive Design**: The application is designed to be responsive and works well on both desktop and mobile devices.
+- **TypeScript Support**: Strongly typed components and Redux slices for better maintainability and fewer runtime errors.
+- **State Management**: Uses Redux Toolkit for state management.
+- **API Integration**: Fetches user data from a mock API.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
 
-- Configure the top-level `parserOptions` property like this:
+Make sure you have Node.js and npm installed on your machine.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Running Locally
+
+To run the app locally, follow these steps:
+
+```bash
+npm install
+```
+and then run dev server: 
+
+```bash
+    npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Deployed App
+
+You can view the deployed version of the app here: (https://user-list-k3d2i9yor-damians-projects-d2f33c16.vercel.app/)
