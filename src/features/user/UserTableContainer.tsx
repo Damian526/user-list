@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { fetchUsers, selectFilteredUsers, setFilter, UserState } from './userSlice';
-import UserTable from '../../components/UserTable';
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { fetchUsers, selectFilteredUsers } from "./userSlice";
+import UserTable from "../../components/UserTable";
 
 const UserTableContainer: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -11,11 +11,7 @@ const UserTableContainer: React.FC = () => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  const handleFilterChange = (filterType: keyof UserState['filters'], value: string) => {
-    dispatch(setFilter({ filterType, value }));
-  };
-
-  return <UserTable users={users} onFilterChange={handleFilterChange} />;
+  return <UserTable users={users} />;
 };
 
 export default UserTableContainer;
