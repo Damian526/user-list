@@ -26,9 +26,9 @@ npm install
 and then run dev server: 
 
 ```bash
-    npm run dev
+npm run dev
 ```
 
 ## Deployed App
 
-You can view the deployed version of the app here: (https://user-list-k3d2i9yor-damians-projects-d2f33c16.vercel.app/)
+You can view the deployed version of the app here: (https://user-list-mu-rouge.vercel.app/)
