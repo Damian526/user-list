@@ -26,7 +26,7 @@ const FilterInput: React.FC<FilterInputProps> = ({ filterType, className }) => {
     <div className={`relative ${className}`}>
       <input
         type="text"
-        placeholder={filterType}
+        placeholder={`Search by ${filterType}`}
         value={value}
         onChange={handleChange}
         className="w-full p-2 pr-10 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
